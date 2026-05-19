@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stereomer // dossier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300&display=swap');
+        
+        :root { --bg: #0a0a0a; --text: #a1a1aa; --heading: #ffffff; --accent: #22c55e; }
+        .light-mode { --bg: #f4f4f5; --text: #52525b; --heading: #000000; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            transition: background 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3 { color: var(--heading); transition: color 0.3s ease; }
+        
+        .toggle-switch {
+            width: 40px; height: 20px; background: #3f3f46; border-radius: 20px;
+            position: relative; cursor: pointer; transition: 0.3s;
+        }
+        .toggle-switch::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 16px; height: 16px; background: white; border-radius: 50%;
+            transition: 0.3s;
+        }
+        .light-mode .toggle-switch { background: var(--accent); }
+        .light-mode .toggle-switch::after { transform: translateX(20px); }
+
+        .terminal-panel { 
+            background: rgba(255,255,255,0.03); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255,255,255,0.08); 
+        }
+        
+        .numeral-node { position: relative; margin-left: 60px; }
+        .numeral-node::before {
+            content: attr(data-num);
+            position: absolute; left: -60px; top: 0px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+            color: #3f3f46; transition: all 0.3s ease;
+        }
+        .numeral-node:hover::before { color: var(--accent); transform: translateX(-5px); }
+        
+        .brutal-card { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #3f3f46; }
+        .brutal-card:hover { transform: translate(-4px, -4px); box-shadow: 6px 6px 0px var(--accent); border-color: var(--accent); }
+    </style>
+</head>
+<body class="p-8 md:p-16">
+
+    <div class="max-w-5xl mx-auto">
+        <header class="flex justify-between items-center mb-16">
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-4 text-[10px] uppercase tracking-widest text-[var(--accent)] font-mono">// WELCOME</span>
+                </div>
+                <h1 class="text-2xl font-light mt-1 tracking-tight flex items-center gap-3">
+                    stereomer. 
+                    <img src="https://media.tenor.com/mr9ZTxhFxVAAAAAj/annoying-dog-undertale.gif" class="h-6 w-6 pixelated opacity-80" alt="Dog">
+                </h1>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <span class="text-[10px] uppercase tracking-widest opacity-50">Theme</span>
+                <div onclick="document.body.classList.toggle('light-mode')" class="toggle-switch"></div>
+            </div>
+        </header>
+
+        <main class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-8">
+                <div data-num="I." class="numeral-node brutal-card terminal-panel p-6 rounded-lg">
+                    <h2 class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-4">OBJECTIVE</h2>
+                    <p class="text-sm font-light leading-relaxed">Engineering dynamic frontend interfaces. Merging logic with narrative structure.</p>
+                </div>
+                <div data-num="II." class="numeral-node brutal-card terminal-panel p-6 rounded-lg">
+                    <h2 class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-4">METRICS</h2>
+                    <div class="grid grid-cols-1 gap-2 text-[11px] font-mono opacity-80">
+                        <div>> 01_PIANIST (Ravel/Alkan)</div>
+                        <div>> 02_HISTORIAN</div>
+                        <div>> 03_ARSENAL_STRATEGIST</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div data-num="III." class="numeral-node brutal-card terminal-panel p-6 rounded-lg">
+                    <h2 class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-6">REGISTRY</h2>
+                    <div class="space-y-6">
+                        <div class="cursor-pointer group" onclick="document.getElementById('b1').classList.toggle('hidden')">
+                            <h3 class="font-medium group-hover:text-[var(--accent)] transition-colors">Map of Causality</h3>
+                            <p id="b1" class="hidden text-xs mt-2 italic opacity-60 font-mono">[LOGS] Causality Timeline Engine // HIATUS</p>
+                        </div>
+                        <div class="cursor-pointer group" onclick="document.getElementById('b2').classList.toggle('hidden')">
+                            <h3 class="font-medium group-hover:text-[var(--accent)] transition-colors">Stereotypical</h3>
+                            <p id="b2" class="hidden text-xs mt-2 opacity-60 leading-relaxed font-mono">
+                                [LOGS] Atypical arsenal fan. Pursuit of gold.
+                                <br><a href="https://www.youtube.com/channel/UCT_g4Tn2JddIlsYAVHn4ufA" target="_blank" class="underline mt-2 block hover:text-[var(--accent)]">YouTube Channel</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div data-num="IV." class="numeral-node brutal-card terminal-panel p-6 rounded-lg">
+                    <h2 class="text-[10px] uppercase tracking-widest text-[var(--accent)] mb-2">FOUNDATIONS</h2>
+                    <p class="text-xs font-mono opacity-80">MBBS Candidate // India // 2023-Present</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-20 pt-8 border-t border-zinc-800 flex flex-wrap gap-6 text-[10px] uppercase tracking-widest font-mono justify-end">
+            <a href="mailto:isomerstereo@gmail.com" class="hover:text-[var(--accent)] transition-colors">// GMAIL</a>
+            <a href="https://www.instagram.com/isomerstereo" target="_blank" class="hover:text-[var(--accent)] transition-colors">// INSTAGRAM</a>
+            <a href="https://www.youtube.com/channel/UCT_g4Tn2JddIlsYAVHn4ufA" target="_blank" class="hover:text-[var(--accent)] transition-colors">// YOUTUBE</a>
+        </footer>
+    </div>
+</body>
+</html>
